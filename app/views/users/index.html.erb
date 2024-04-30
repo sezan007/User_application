@@ -2,7 +2,10 @@
 
 
 <h1>Users</h1>
-
+<%= form_with url: bulk_update_users_path, method: :patch, id: :bulk_actions_form do |form| %>
+  <%= form.submit "active" %>
+  <%= form.submit "Block" %>
+<% end %>
 <table class="table table-light table-striped table table-hover table table-bordered">
   <thead>
     <tr>
@@ -20,35 +23,3 @@
   </tbody>
 </table>
 <%= link_to "New user", new_user_path %>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("unlock_button").addEventListener("click", function(event) {
-      event.preventDefault();
-      const userId = document.querySelector("input[name='user_ids[]']").value;
-      const status = document.querySelector("input[name='status']").value;
-
-      const formData = new FormData();
-      formData.append("user_id", userId);
-      formData.append("status", status);
-
-      fetch("/block_unblock_user", {
-        method: "PUT",
-        body: formData
-      })
-      .then(response => {
-        if (response.ok) {
-          alert("User unlocked successfully.");
-        } else {
-          throw new Error("Failed to unlock user.");
-        }
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
-    });
-  });
-</script>
-
-
-
-

@@ -10,20 +10,46 @@ class UsersController < ApplicationController
       redirect_to new_user_session_path, alert: "You must be signed in to access this page."
     end
   end
-  def block_unblock
-    user_id = params[:user_id]
-    puts "..........................My Id............###############//////////////////"
-    puts params[:user_id]
-    status = params[:status]
+  def bulk_update
+    puts "###########>>..............i was here >>>>>############...............cc"
+    
+    @selected_users=User.where(id:params.fetch(:user_ids,[]).compact)
+    #binding.b
+    if params[:commit]=="Block"
+      @selected_users.update_all(status: :blocked)
+      redirect_to users_path, notice: "User status updated successfully."
+    elsif params[:commit]=="active"
+      @selected_users.update_all(status: :active)
+      redirect_to users_path, notice: "User status updated successfully."
+    else
+      redirect_to users_path, notice: "No user selected."
+    end
+    
 
-    # Find the user by ID
-    user = User.find(user_id)
+  #   @selected_users = User.where(id: params.fetch(:user_ids, []).compact)
+  #   if params[:commit] == 'block'
+  #     @selected_users.update_all(status: :blocked)
+  #   elsif params[:commit] == 'unblock'
+  #     # @selected_users.each { |u| u.active! }
+  #     @selected_users.update_all(status: :active)
+  #   end
+  #   flash[:notice] = "#{@selected_users.count} users marked as #{params[:commit]}"
+  #   redirect_to action: :index
+  # end
+  # def block_unblock
+  #   user_id = params[:user_id]
+  #   puts "..........................My Id............###############//////////////////"
+  #   puts params[:user_id]
+  #   status = params[:status]
 
-    # Update the user's status
-    user.update(status: status)
+  #   # Find the user by ID
+  #   user = User.find(user_id)
 
-    # Redirect or render as needed
-    redirect_to users_path, notice: "User status updated successfully."
+  #   # Update the user's status
+  #   user.update(status: status)
+
+  #   # Redirect or render as needed
+  #   redirect_to users_path, notice: "User status updated successfully."
   end
   
 
