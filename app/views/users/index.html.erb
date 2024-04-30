@@ -2,12 +2,7 @@
 
 
 <h1>Users</h1>
-<%= form_tag block_unblock_path(1), method: :put, id: "block-unblock-form" do %>
-  <%= hidden_field_tag "status", "unblock" %>
-  <%= check_box_tag "user_ids[]", 1, false, class: "user_checkbox" %>
-  <%= button_to "Unlock", "#", id: "unlock_button", class: "btn btn-success btn-sm" %>
-<% end %>
-<%= check_box_tag "user_ids[]", 1%>
+
 <table class="table table-light table-striped table table-hover table table-bordered">
   <thead>
     <tr>
