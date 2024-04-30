@@ -2,10 +2,23 @@
 
 
 <h1>Users</h1>
+<div data-controller="checkbox-select-all">
+  <input type="checkbox" id="all" name="all" value="all" data-checkbox-select-all-target="parent" data-action="change->checkbox-select-all#toggleChildren">
+  <label for="all">Select All</label><br>
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
+  <label for="vehicle3"> I have a boat</label><br>
+</div>
+
+
 <%= form_with url: bulk_update_users_path, method: :patch, id: :bulk_actions_form do |form| %>
   <%= form.submit "active" %>
   <%= form.submit "Block" %>
 <% end %>
+<div data-controller="checkbox-select-all">
 <table class="table table-light table-striped table table-hover table table-bordered">
   <thead>
     <tr>
@@ -22,4 +35,5 @@
   <% end %>
   </tbody>
 </table>
+</div>
 <%= link_to "New user", new_user_path %>
