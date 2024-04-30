@@ -1,0 +1,59 @@
+<p style="color: green"><%= notice %></p>
+
+
+<h1>Users</h1>
+<%= form_tag block_unblock_path(1), method: :put, id: "block-unblock-form" do %>
+  <%= hidden_field_tag "status", "unblock" %>
+  <%= check_box_tag "user_ids[]", 1, false, class: "user_checkbox" %>
+  <%= button_to "Unlock", "#", id: "unlock_button", class: "btn btn-success btn-sm" %>
+<% end %>
+<%= check_box_tag "user_ids[]", 1%>
+<table class="table table-light table-striped table table-hover table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Last Login</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <%= render user %>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to "New user", new_user_path %>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("unlock_button").addEventListener("click", function(event) {
+      event.preventDefault();
+      const userId = document.querySelector("input[name='user_ids[]']").value;
+      const status = document.querySelector("input[name='status']").value;
+
+      const formData = new FormData();
+      formData.append("user_id", userId);
+      formData.append("status", status);
+
+      fetch("/block_unblock_user", {
+        method: "PUT",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("User unlocked successfully.");
+        } else {
+          throw new Error("Failed to unlock user.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+    });
+  });
+</script>
+
+
+
+
