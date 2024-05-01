@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   resources :users do
     collection do
       patch :bulk_update
       delete :delete_selected
     end
   end
-  devise_for :all_users
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
+  
 
   root 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

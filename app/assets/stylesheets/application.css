@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+ .with-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/></svg>');
+    width: 50px; /* Adjust width */
+    height: 50px; /* Adjust height */
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust as needed */
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    text-indent: -9999px;
+    
+ }
+ .with-icon01 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16"><path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2"/></svg>');
+    width: 50px; /* Adjust width */
+    height: 50px; /* Adjust height */
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust as needed */
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+ }
+  
+  
