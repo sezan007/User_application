@@ -1,3 +1,6 @@
+
+
+
 <p style="color: green"><%= notice %></p>
 
 
@@ -8,6 +11,9 @@
 <%= form_with url: bulk_update_users_path, method: :patch, id: :bulk_actions_form do |form| %>
   <%= form.submit "active", class: "btn btn-light with-icon01" %>
   <%= form.submit "Block", class: "btn btn-light with-icon" %>
+<% end %>
+<%= form_with url: bulk_delete_users_path, method: :DELETE, id: :bulk_delete_form do |form| %>
+  <%= form.submit "Delete", class: "btn btn-danger" %>
 <% end %>
 <div data-controller="checkbox-select-all">
 <table class="table table-light table-striped table table-hover table table-bordered">
@@ -24,6 +30,7 @@
   <% @users.each do |user| %>
     <%= render user %>
   <% end %>
+  
   </tbody>
 </table>
 </div>

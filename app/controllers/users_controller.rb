@@ -11,8 +11,7 @@ class UsersController < ApplicationController
     end
   end
   def bulk_update
-    puts "###########>>..............i was here >>>>>############...............cc"
-    
+  
     @selected_users=User.where(id:params.fetch(:user_ids,[]).compact)
     #binding.b
     if params[:commit]=="Block"
@@ -24,6 +23,8 @@ class UsersController < ApplicationController
     else
       redirect_to users_path, notice: "No user selected."
     end
+  end
+
     
 
   #   @selected_users = User.where(id: params.fetch(:user_ids, []).compact)
@@ -50,8 +51,19 @@ class UsersController < ApplicationController
 
   #   # Redirect or render as needed
   #   redirect_to users_path, notice: "User status updated successfully."
-  end
-  
+  def bulk_delete
+    @selected_users = User.where(id: params.fetch(:user_ids, []).compact)
+    # puts "555555555555555555555555anything55555555555555555555555"
+    # binding.b
+    if @selected_users.empty?
+      # Handle case where no users are selected
+      flash[:alert] = "No users selected for deletion."
+    else
+      @selected_users.destroy_all
+      flash[:notice] = "Selected users have been deleted successfully."
+      
+    end
+  end 
 
   def delete_selected
     # Implement logic to delete selected users
